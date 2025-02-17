@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:todo_application/entities/todo.dart';
 import 'package:todo_application/ui/screens/add_new_todo_screen.dart';
 import 'package:todo_application/ui/screens/todo_list/all_todo_list_tab.dart';
-import 'package:todo_application/ui/widgets/todo_item.dart';
+import 'package:todo_application/ui/screens/todo_list/done_todo_list_tab.dart';
+import 'package:todo_application/ui/screens/todo_list/undone_todo_list_tab.dart';
 
 class TodoListScreen extends StatefulWidget {
   const TodoListScreen({super.key});
@@ -35,8 +36,8 @@ class _TodoListScreenState extends State<TodoListScreen>
             //controller: _tabController,
             children: [
               AllTodoListTab(),
-              AllTodoListTab(),
-              AllTodoListTab(),
+              UndoneTodoListTab(),
+              DoneTodoListTab(),
             ]),
         floatingActionButton: _buildAddTodoFAB(),
       ),

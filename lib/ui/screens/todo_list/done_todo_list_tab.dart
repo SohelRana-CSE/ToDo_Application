@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../entities/todo.dart';
 import '../../widgets/todo_item.dart';
 
-class UndoneTodoListTab extends StatelessWidget {
-  const UndoneTodoListTab({super.key});
+class DoneTodoListTab extends StatelessWidget {
+  const DoneTodoListTab({super.key});
 
   @override
   Widget build(BuildContext context) {
