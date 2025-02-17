@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:todo_application/entities/todo.dart';
+import 'package:todo_application/ui/screens/add_new_todo_screen.dart';
+import 'package:todo_application/ui/widgets/todo_item.dart';
 
 class TodoListScreen extends StatefulWidget {
   const TodoListScreen({super.key});
@@ -8,6 +11,8 @@ class TodoListScreen extends StatefulWidget {
 }
 
 class _TodoListScreenState extends State<TodoListScreen> {
+  List<Todo> _todoList = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,52 +22,26 @@ class _TodoListScreenState extends State<TodoListScreen> {
       body: ListView.builder(
           itemCount: 5,
           itemBuilder: (context, index) {
-            return TodoItem();
+            return Dismissible(
+              key: UniqueKey(),
+              // onDismissed: (_){},
+              // confirmDismiss: (_){},
+              child: TodoItem(
+                todo: Todo(
+                    'title will be here', 'description isag', DateTime.now()),
+                onIconButtonPressed: () {},
+              ),
+            );
           }),
-    );
-  }
-}
-
-class TodoItem extends StatelessWidget {
-  const TodoItem({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: ListTile(
-        title: Text('Title', style: TextStyle(
-          decoration: _getTextDecoration(isDone)
-        ),),
-        subtitle: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('description'),
-            Text('time'),
-          ],
-        ),
-        trailing: _buildRoundedIconButton(),
-        /* trailing: OutlinedButton.icon(
-             onPressed: () {},
-             icon: Icon(Icons.check),
-             label: Text('Done')),
-         */
+      floatingActionButton: FloatingActionButton.extended(
+        tooltip: 'Add New ToDO',
+        onPressed: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => AddNewTodoScreen()));
+        },
+        label: const Text("Add"),
+        icon: const Icon(Icons.add),
       ),
     );
-  }
-
-  Widget _buildRoundedIconButton() {
-    return CircleAvatar(
-      child: Icon(_getIcon(true)),
-    );
-  }
-
-  IconData _getIcon(bool isDone) {
-    return isDone ? Icons.check : Icons.clear;
-  }
-
-  TextDecoration? _getTextDecoration(bool isDone){
-    return isDone ? TextDecoration.lineThrough : null;
   }
 }
