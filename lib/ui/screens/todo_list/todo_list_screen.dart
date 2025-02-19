@@ -12,8 +12,7 @@ class TodoListScreen extends StatefulWidget {
   State<TodoListScreen> createState() => _TodoListScreenState();
 }
 
-class _TodoListScreenState extends State<TodoListScreen>
-    with SingleTickerProviderStateMixin {
+class _TodoListScreenState extends State<TodoListScreen> with SingleTickerProviderStateMixin {
   //late TabController _tabController;
   List<Todo> _todoList = [];
 
@@ -46,14 +45,14 @@ class _TodoListScreenState extends State<TodoListScreen>
 
   FloatingActionButton _buildAddTodoFAB() {
     return FloatingActionButton.extended(
-        tooltip: 'Add New ToDO',
-        onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => AddNewTodoScreen()));
-        },
-        label: const Text("Add"),
-        icon: const Icon(Icons.add),
-      );
+      tooltip: 'Add New ToDO',
+      onPressed: () {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => AddNewTodoScreen()));
+      },
+      label: const Text("Add"),
+      icon: const Icon(Icons.add),
+    );
   }
 
   TabBar _buildTabBar() {
