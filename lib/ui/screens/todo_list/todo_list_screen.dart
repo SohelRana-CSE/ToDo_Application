@@ -56,12 +56,26 @@ class _TodoListScreenState extends State<TodoListScreen> with SingleTickerProvid
   }
 
   TabBar _buildTabBar() {
-    return TabBar(
+    return const TabBar(
         //controller: _tabController,
         tabs: [
           const Tab(text: 'All'),
           const Tab(text: 'Undone'),
           const Tab(text: 'Done'),
         ]);
+  }
+
+  void _addNewTodo(Todo todo) {
+    _todoList.add(todo);
+    if(mounted) {
+      setState(() {});
+    }
+  }
+
+  void _deleteTodo(int index){
+    _todoList.removeAt(index);
+    if(mounted) {
+      setState(() {});
+    }
   }
 }
