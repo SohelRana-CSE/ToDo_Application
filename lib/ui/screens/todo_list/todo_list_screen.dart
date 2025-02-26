@@ -12,7 +12,8 @@ class TodoListScreen extends StatefulWidget {
   State<TodoListScreen> createState() => _TodoListScreenState();
 }
 
-class _TodoListScreenState extends State<TodoListScreen> with SingleTickerProviderStateMixin {
+class _TodoListScreenState extends State<TodoListScreen>
+    with SingleTickerProviderStateMixin {
   //late TabController _tabController;
   List<Todo> _todoList = [];
 
@@ -34,7 +35,11 @@ class _TodoListScreenState extends State<TodoListScreen> with SingleTickerProvid
         body: TabBarView(
             //controller: _tabController,
             children: [
-              AllTodoListTab(),
+              AllTodoListTab(
+                onDelete: _deleteTodo,
+                onStatusChange: _toggleTodoStatus,
+                todolist: _todoList,
+              ),
               UndoneTodoListTab(),
               DoneTodoListTab(),
             ]),
@@ -47,8 +52,12 @@ class _TodoListScreenState extends State<TodoListScreen> with SingleTickerProvid
     return FloatingActionButton.extended(
       tooltip: 'Add New ToDO',
       onPressed: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => AddNewTodoScreen()));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => AddNewTodoScreen(
+                      onAddTodo: _addNewTodo,
+                    )));
       },
       label: const Text("Add"),
       icon: const Icon(Icons.add),
@@ -67,14 +76,21 @@ class _TodoListScreenState extends State<TodoListScreen> with SingleTickerProvid
 
   void _addNewTodo(Todo todo) {
     _todoList.add(todo);
-    if(mounted) {
+    if (mounted) {
       setState(() {});
     }
   }
 
-  void _deleteTodo(int index){
+  void _deleteTodo(int index) {
     _todoList.removeAt(index);
-    if(mounted) {
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  void _toggleTodoStatus(int index) {
+    _todoList[index].isDone = !_todoList[index].isDone;
+    if (mounted) {
       setState(() {});
     }
   }
