@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_application/ui/widgets/empty_list_widget.dart';
 
 import '../../../entities/todo.dart';
 import '../../widgets/todo_item.dart';
@@ -12,6 +13,9 @@ class DoneTodoListTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (todoList.isEmpty) {
+      return const EmptyListWidget();
+    }
     return ListView.builder(
         itemCount: todoList.length,
         itemBuilder: (context, index) {
