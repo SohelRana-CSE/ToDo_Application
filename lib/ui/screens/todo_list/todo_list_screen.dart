@@ -15,7 +15,7 @@ class TodoListScreen extends StatefulWidget {
 class _TodoListScreenState extends State<TodoListScreen>
     with SingleTickerProviderStateMixin {
   //late TabController _tabController;
-  List<Todo> _todoList = [];
+  final List<Todo> _todoList = [];
 
   // @override
   // void initState() {
@@ -40,8 +40,16 @@ class _TodoListScreenState extends State<TodoListScreen>
                 onStatusChange: _toggleTodoStatus,
                 todolist: _todoList,
               ),
-              UndoneTodoListTab(),
-              DoneTodoListTab(),
+              UndoneTodoListTab(
+                onDelete: _deleteTodo,
+                onStatusChange: _toggleTodoStatus,
+                todoList: _todoList.where((item) => item.isDone == false).toList(),
+              ),
+              DoneTodoListTab(
+                onDelete: _deleteTodo,
+                onStatusChange: _toggleTodoStatus,
+                todoList: _todoList.where((item) => item.isDone == true).toList(),
+              ),
             ]),
         floatingActionButton: _buildAddTodoFAB(),
       ),
