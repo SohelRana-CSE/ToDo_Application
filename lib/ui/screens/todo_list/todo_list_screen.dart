@@ -14,14 +14,7 @@ class TodoListScreen extends StatefulWidget {
 
 class _TodoListScreenState extends State<TodoListScreen>
     with SingleTickerProviderStateMixin {
-  //late TabController _tabController;
   final List<Todo> _todoList = [];
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _tabController = TabController(length: 3, vsync: this);
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +26,6 @@ class _TodoListScreenState extends State<TodoListScreen>
           bottom: _buildTabBar(),
         ),
         body: TabBarView(
-            //controller: _tabController,
             children: [
               AllTodoListTab(
                 onDelete: _deleteTodo,
@@ -74,7 +66,6 @@ class _TodoListScreenState extends State<TodoListScreen>
 
   TabBar _buildTabBar() {
     return const TabBar(
-        //controller: _tabController,
         tabs: [
           const Tab(text: 'All'),
           const Tab(text: 'Undone'),
@@ -96,6 +87,7 @@ class _TodoListScreenState extends State<TodoListScreen>
     }
   }
 
+  //toggleTodoStatus used for done or undone the TodoList
   void _toggleTodoStatus(int index) {
     _todoList[index].isDone = !_todoList[index].isDone;
     if (mounted) {

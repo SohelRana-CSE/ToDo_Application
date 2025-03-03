@@ -31,11 +31,6 @@ class TodoItem extends StatelessWidget {
           ],
         ),
         trailing: _buildRoundedIconButton(todo.isDone),
-        /* trailing: OutlinedButton.icon(
-             onPressed: () {},
-             icon: Icon(Icons.check),
-             label: Text('Done')),
-         */
       ),
     );
   }
